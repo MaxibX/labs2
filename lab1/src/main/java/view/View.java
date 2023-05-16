@@ -2,6 +2,7 @@ package view;
 
 import presenter.IViewListener;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class View {
@@ -11,6 +12,7 @@ public class View {
         this.listener = listener;
         scanner = new Scanner(System.in);
     }
+
     public void ask_str() {
         String str;
         str = scanner.nextLine();

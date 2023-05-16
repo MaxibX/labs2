@@ -1,15 +1,34 @@
 package commands;
 
+import exceptions.NoStackElement;
+import exceptions.TooManyArgs;
+
 public class Sub extends Strategy {
     public Sub(Object[] args) {
         super(args);
+        if (args.length != 1) {
+            throw new TooManyArgs();
+        }
     }
 
     @Override
     public void exec() {
-        Float first = model.popStack();
-        Float second = model.popStack();
-        first -= second;
-        model.pushStack(first);
+        Float first;
+        try {
+            first = model.popStack();
+        }
+        catch (NoStackElement e) {
+            throw new NoStackElement();
+        }
+        Float second;
+        try {
+            second = model.popStack();
+        }
+        catch (NoStackElement e) {
+            model.pushStack(first);
+            throw new NoStackElement();
+        }
+        second -= first;
+        model.pushStack(second);
     }
 }

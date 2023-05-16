@@ -1,10 +1,12 @@
 package commands;
 
 import exceptions.NoStackElement;
+import exceptions.SqrtNegativeNumber;
 import exceptions.TooManyArgs;
 
-public class Mul extends Strategy {
-    public Mul(Object[] args) {
+public class Sqrt extends Strategy {
+
+    public Sqrt(Object[] args) {
         super(args);
         if (args.length != 1) {
             throw new TooManyArgs();
@@ -20,15 +22,11 @@ public class Mul extends Strategy {
         catch (NoStackElement e) {
             throw new NoStackElement();
         }
-        Float second;
-        try {
-            second = model.popStack();
+        if (first >= 0)
+            first = (float) Math.sqrt(first);
+        else {
+            throw new SqrtNegativeNumber();
         }
-        catch (NoStackElement e) {
-            model.pushStack(first);
-            throw new NoStackElement();
-        }
-        second *= first;
-        model.pushStack(second);
+        model.pushStack(first);
     }
 }
