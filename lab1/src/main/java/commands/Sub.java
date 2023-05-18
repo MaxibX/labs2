@@ -6,7 +6,7 @@ import exceptions.TooManyArgs;
 public class Sub extends Strategy {
     public Sub(Object[] args) {
         super(args);
-        if (args.length != 1) {
+        if (args.length != COUNT_ONE) {
             throw new TooManyArgs();
         }
     }

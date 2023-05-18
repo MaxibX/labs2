@@ -8,15 +8,15 @@ public class Push extends Strategy {
     private Float paramFloat;
     public Push(Object[] args) {
         super(args);
-        if (args.length != 2) {
+        if (args.length != COUNT_TWO) {
             throw new TooManyArgs();
         }
         if (args[1] instanceof String) {
             try {
-                paramFloat = Float.parseFloat((String) args[1]);
+                paramFloat = Float.parseFloat((String) args[FIRST_ELEM]);
             }
             catch (NumberFormatException e) {
-                param = (String) args[1];
+                param = (String) args[FIRST_ELEM];
             }
         }
     }

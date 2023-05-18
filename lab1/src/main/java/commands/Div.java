@@ -8,7 +8,7 @@ public class Div extends Strategy {
 
     public Div(Object[] args) {
         super(args);
-        if (args.length != 1) {
+        if (args.length != COUNT_ONE) {
             throw new TooManyArgs();
         }
     }
@@ -22,7 +22,7 @@ public class Div extends Strategy {
         catch (NoStackElement e) {
             throw new NoStackElement();
         }
-        if (first != 0) {
+        if (first != ZERO) {
             first = model.popStack();
             Float second;
             try {

@@ -13,6 +13,9 @@ import java.util.Properties;
 public class Factory {
     private Model model;
     private Properties config;
+    private static int ZERO = 0;
+    private static int ZERO_ELEM = 0;
+    private static int FIRST_ELEM = 1;
     public Factory(Model model) {
         this.model = model;
         InputStream in = Factory.class.getResourceAsStream("/config.properties");
@@ -26,10 +29,10 @@ public class Factory {
 
     public Strategy createCommand(String str) {
         String[] command_parts = str.split(" ");
-        if (command_parts.length == 0) {
+        if (command_parts.length == ZERO) {
             throw new BadCommand();
         }
-        String classname = config.getProperty(command_parts[0]);
+        String classname = config.getProperty(command_parts[ZERO_ELEM]);
         if (classname == null) {
             throw new BadCommand();
         }
@@ -46,8 +49,8 @@ public class Factory {
             throw new ConstructorNotFound();
         }
         Object[] objects = new Object[command_parts.length];
-        objects[0] = model;
-        for (int i = 1; i < command_parts.length; ++i) {
+        objects[ZERO_ELEM] = model;
+        for (int i = FIRST_ELEM; i < command_parts.length; ++i) {
             objects[i] = command_parts[i];
         }
         try {

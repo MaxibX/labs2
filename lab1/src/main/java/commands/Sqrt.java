@@ -8,7 +8,7 @@ public class Sqrt extends Strategy {
 
     public Sqrt(Object[] args) {
         super(args);
-        if (args.length != 1) {
+        if (args.length != COUNT_ONE) {
             throw new TooManyArgs();
         }
     }
@@ -22,7 +22,7 @@ public class Sqrt extends Strategy {
         catch (NoStackElement e) {
             throw new NoStackElement();
         }
-        if (first >= 0)
+        if (first >= ZERO)
             first = (float) Math.sqrt(first);
         else {
             throw new SqrtNegativeNumber();

@@ -1,13 +1,9 @@
 package presenter;
 
-import commands.Push;
 import exceptions.*;
 import factory.Factory;
 import model.Model;
 import view.View;
-import java.lang.ClassNotFoundException;
-import java.awt.*;
-import java.util.EmptyStackException;
 
 public class Presenter implements IViewListener {
     private Model model;
@@ -19,10 +15,8 @@ public class Presenter implements IViewListener {
         factory = new Factory(model);
     }
     public void run() {
-        //while (true) view.ask_str();
         while (true)
             view.ask_str();
-
     }
     @Override
     public void get_str(String str) {

@@ -9,13 +9,13 @@ public class Define extends Strategy {
     private Float value;
     public Define(Object[] args) {
         super(args);
-        if (args.length != 3) {
+        if (args.length != COUNT_THREE) {
             throw new TooManyArgs();
         }
-        if ((args[1] instanceof String) && (args[2] instanceof String)) {
-            param = (String) args[1];
+        if ((args[FIRST_ELEM] instanceof String) && (args[SECOND_ELEM] instanceof String)) {
+            param = (String) args[FIRST_ELEM];
             try {
-                value = Float.parseFloat((String) args[2]);
+                value = Float.parseFloat((String) args[SECOND_ELEM]);
             }
             catch (NumberFormatException e) {
                 throw new NumberFormatException();

@@ -7,7 +7,7 @@ public class Print extends Strategy {
 
     public Print(Object[] args) {
         super(args);
-        if (args.length != 1) {
+        if (args.length != COUNT_ONE) {
             throw new TooManyArgs();
         }
     }
@@ -21,7 +21,7 @@ public class Print extends Strategy {
         catch (NoStackElement e) {
             throw new NoStackElement();
         }
-        if (tmp % Math.round(tmp) != 0 && tmp != 0) {
+        if (tmp % Math.round(tmp) != ZERO && tmp != ZERO) {
             System.out.println(tmp);
         }
         else {

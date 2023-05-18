@@ -9,7 +9,7 @@ public class Add extends Strategy {
     private String param;
     public Add(Object[] args) {
         super(args);
-        if (args.length != 1) {
+        if (args.length != COUNT_ONE) {
             throw new TooManyArgs();
         }
     }
