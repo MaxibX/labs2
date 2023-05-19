@@ -9,10 +9,10 @@ import java.util.Stack;
 
 public class Model {
     private Stack<Float> stack;
-    private Map<String, Float> param;
+    private Map<String, String> param;
     public Model() {
         stack = new Stack<Float>();
-        param = new HashMap<String, Float>();
+        param = new HashMap<String, String>();
     }
     public void pushStack(Float number) {
         stack.push(number);
@@ -23,16 +23,25 @@ public class Model {
         }
         return stack.pop();
     }
-    public void defineParam(String str, Float number) {
+    public void defineParam(String str, String number) {
         param.put(str, number);
     }
     public Float defineGet(String str) {
-        if (param.containsKey(str)) {
-            return param.get(str);
+        Float number = null;
+        while (number == null) {
+            if (param.containsKey(str)) {
+                try {
+                    number = Float.parseFloat(param.get(str));
+                }
+                catch (NumberFormatException e) {
+                    str = param.get(str);
+                }
+            }
+            else {
+                throw new NoMapKey();
+            }
         }
-        else {
-            throw new NoMapKey();
-        }
+        return number;
     }
     public Float peekStack() {
         if (stack.empty()) {

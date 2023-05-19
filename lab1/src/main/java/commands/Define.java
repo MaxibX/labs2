@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Define extends Strategy {
     private String param;
-    private Float value;
+    private String value;
     public Define(Object[] args) {
         super(args);
         if (args.length != COUNT_THREE) {
@@ -14,12 +14,13 @@ public class Define extends Strategy {
         }
         if ((args[FIRST_ELEM] instanceof String) && (args[SECOND_ELEM] instanceof String)) {
             param = (String) args[FIRST_ELEM];
-            try {
+            value = (String) args[SECOND_ELEM];
+            /*try {
                 value = Float.parseFloat((String) args[SECOND_ELEM]);
             }
             catch (NumberFormatException e) {
                 throw new NumberFormatException();
-            }
+            }*/
         }
     }
 

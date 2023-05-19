@@ -13,9 +13,10 @@ import java.util.Properties;
 public class Factory {
     private Model model;
     private Properties config;
-    private static int ZERO = 0;
-    private static int ZERO_ELEM = 0;
-    private static int FIRST_ELEM = 1;
+    private final int ZERO = 0;
+    private final int ZERO_ELEM = 0;
+    private final int FIRST_ELEM = 1;
+    private final String space_symbol = " ";
     public Factory(Model model) {
         this.model = model;
         InputStream in = Factory.class.getResourceAsStream("/config.properties");
@@ -28,7 +29,7 @@ public class Factory {
     }
 
     public Strategy createCommand(String str) {
-        String[] command_parts = str.split(" ");
+        String[] command_parts = str.split(space_symbol);
         if (command_parts.length == ZERO) {
             throw new BadCommand();
         }
