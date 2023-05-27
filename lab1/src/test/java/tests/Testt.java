@@ -1,10 +1,11 @@
 package tests;
 
-import exceptions.*;
-import factory.Factory;
-import model.Model;
+import ru.nsu.ccfit.nadezhkin.lab1.exceptions.*;
+import ru.nsu.ccfit.nadezhkin.lab1.factory.Factory;
+import ru.nsu.ccfit.nadezhkin.lab1.model.Model;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.nsu.ccfit.nadezhkin.lab1.exceptions.*;
 
 public class Testt {
     @Test
@@ -29,12 +30,8 @@ public class Testt {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        try {
-            model.peekStack();
-        }
-        catch (NoStackElement e) {
-            Assertions.assertTrue(true);
-        }
+        NoStackElement e = Assertions.assertThrows(NoStackElement.class, model::peekStack);
+        Assertions.assertNotNull(e);
     }
 
     @Test
@@ -97,13 +94,10 @@ public class Testt {
     void div_by_zero_simple() {
         Model model = new Model();
         Factory factory = new Factory(model);
-        try {
-            factory.createCommand("PUSH 1").exec();
-            factory.createCommand("PUSH 0").exec();
-            factory.createCommand("/").exec();
-        } catch (DivByZero e) {
-            Assertions.assertTrue(true);
-        }
+        factory.createCommand("PUSH 1").exec();
+        factory.createCommand("PUSH 0").exec();
+        DivByZero e = Assertions.assertThrows(DivByZero.class, factory.createCommand("/")::exec);
+        Assertions.assertNotNull(e);
     }
 
     @Test
@@ -171,35 +165,26 @@ public class Testt {
     void div_by_zero() {
         Model model = new Model();
         Factory factory = new Factory(model);
-        try {
-            factory.createCommand("PUSH 5").exec();
-            factory.createCommand("PUSH 0").exec();
-            factory.createCommand("/").exec();
-        } catch (DivByZero e) {
-            Assertions.assertTrue(true);
-        }
+        factory.createCommand("PUSH 5").exec();
+        factory.createCommand("PUSH 0").exec();
+        DivByZero e = Assertions.assertThrows(DivByZero.class, factory.createCommand("/")::exec);
+        Assertions.assertNotNull(e);
     }
 
     @Test
     void no_map_key() {
         Model model = new Model();
         Factory factory = new Factory(model);
-        try {
-            factory.createCommand("PUSH A").exec();
-        } catch (NoMapKey e) {
-            Assertions.assertTrue(true);
-        }
+        NoMapKey e = Assertions.assertThrows(NoMapKey.class, factory.createCommand("PUSH A")::exec);
+        Assertions.assertNotNull(e);
     }
 
     @Test
     void no_stack_element() {
         Model model = new Model();
         Factory factory = new Factory(model);
-        try {
-            factory.createCommand("POP").exec();
-        } catch (NoStackElement e) {
-            Assertions.assertTrue(true);
-        }
+        NoStackElement e = Assertions.assertThrows(NoStackElement.class, factory.createCommand("POP")::exec);
+        Assertions.assertNotNull(e);
     }
 
     @Test
@@ -217,11 +202,9 @@ public class Testt {
     void sqrt_neg_num() {
         Model model = new Model();
         Factory factory = new Factory(model);
-        try {
-            factory.createCommand("PUSH -1").exec();
-            factory.createCommand("SQRT").exec();
-        } catch (SqrtNegativeNumber e) {
-            Assertions.assertTrue(true);
-        }
+        factory.createCommand("PUSH -1").exec();
+
+        SqrtNegativeNumber e = Assertions.assertThrows(SqrtNegativeNumber.class, factory.createCommand("SQRT")::exec);
+        Assertions.assertNotNull(e);
     }
 }
