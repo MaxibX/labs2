@@ -5,7 +5,6 @@ import ru.nsu.ccfit.nadezhkin.lab1.factory.Factory;
 import ru.nsu.ccfit.nadezhkin.lab1.model.Model;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ru.nsu.ccfit.nadezhkin.lab1.exceptions.*;
 
 public class Testt {
     @Test
@@ -203,7 +202,6 @@ public class Testt {
         Model model = new Model();
         Factory factory = new Factory(model);
         factory.createCommand("PUSH -1").exec();
-
         SqrtNegativeNumber e = Assertions.assertThrows(SqrtNegativeNumber.class, factory.createCommand("SQRT")::exec);
         Assertions.assertNotNull(e);
     }

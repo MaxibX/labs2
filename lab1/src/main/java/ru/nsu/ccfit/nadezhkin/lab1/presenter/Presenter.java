@@ -16,6 +16,7 @@ public class Presenter implements IViewListener {
     private final String parameter = "Parameter isn't defined\n";
     private final String sqrt_of_negative = "Sqrt of negative number isn't allowed\n";
     private final String another_exception = "Another exception\n";
+    private final String div_by_zero = "Div by zero\n";
 
     private Model model;
     private View view;
@@ -34,6 +35,9 @@ public class Presenter implements IViewListener {
 
         try {
             factory.createCommand(str).exec();
+        }
+        catch (DivByZero e) {
+            System.out.println(div_by_zero);
         }
         catch (ClassNotFound e) {
             System.out.println(command_not_found);
